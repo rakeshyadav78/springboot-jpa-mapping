@@ -19,7 +19,9 @@ import com.zaxxer.hikari.HikariDataSource;
 @Configuration
 @EnableTransactionManagement
 public class DBConfig {
-
+	/*
+	 * configuring db with hikari cp and and datasource for jpa.
+	 */
 	@Bean
 	public DataSource dataSource() {
 		HikariConfig config = new HikariConfig();
