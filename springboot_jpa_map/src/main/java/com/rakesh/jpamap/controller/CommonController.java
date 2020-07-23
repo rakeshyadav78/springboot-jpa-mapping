@@ -20,32 +20,4 @@ import com.rakesh.jpamap.service.StudentService;
 @RestController
 public class CommonController {
 
-	@Autowired
-	private BookService bookService;
-	@Autowired
-	private StudentService studentService;
-
-	@RequestMapping(value = "/saveBook", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Book saveBook(@RequestBody Book book) {
-		Student student = book.getStudent();
-		book.setStudent(student);
-		return bookService.saveBook(book);
-	}
-
-	@RequestMapping(value = "/saveStudent", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Student saveStudent(@RequestBody Student student) {
-		return studentService.saveStudent(student);
-	}
-
-	@RequestMapping(value = "/getAllStudent", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Response getAllStudent() {
-		Response response = studentService.getAllStudent();
-		return response;
-	}
-
-	@RequestMapping(value = "/getAllBook", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Response getAllBook() {
-		Response response = bookService.getAllBook();
-		return response;
-	}
 }
