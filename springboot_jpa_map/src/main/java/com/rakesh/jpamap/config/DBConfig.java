@@ -22,7 +22,7 @@ public class DBConfig {
 	/*
 	 * configuring db with hikari cp and and datasource for jpa.
 	 */
-	@Bean
+	@Bean(name = "dataSource")
 	public DataSource dataSource() {
 		HikariConfig config = new HikariConfig();
 		config.setDriverClassName("com.mysql.cj.jdbc.Driver");
@@ -33,7 +33,7 @@ public class DBConfig {
 
 	}
 
-	@Bean
+	@Bean(name = "entityManagerFactory")
 	public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(DataSource dataSource) {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		factoryBean.setDataSource(dataSource);
@@ -43,10 +43,11 @@ public class DBConfig {
 		Properties properties = new Properties();
 		properties.put("hibernate.show_sql", true);
 		properties.put("hibernate.hbm2ddl.auto", "update");
+		factoryBean.setJpaProperties(properties);
 		return factoryBean;
 	}
 
-	@Bean
+	@Bean(name = "transactionManager")
 	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
 		JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
 		jpaTransactionManager.setEntityManagerFactory(entityManagerFactory);
