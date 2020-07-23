@@ -2,14 +2,17 @@ package com.rakesh.jpamap.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.springframework.web.jsf.FacesContextUtils;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "student")
@@ -28,22 +31,27 @@ public class Student implements Serializable {
 	private String name;
 	@Column(name = "age", nullable = false)
 	private String age;
-	@Column(name = "standard")
+	@Column(name = "standard", nullable = false)
 	private String standard;
-	@Column(name = "address")
+	@Column(name = "address", nullable = false)
 	private String address;
+
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "student", cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private Book book;
 
 	public Student() {
 
 	}
 
-	public Student(Integer sId, String name, String age, String standard, String address) {
+	public Student(Integer sId, String name, String age, String standard, String address, Book book) {
 		super();
 		this.sId = sId;
 		this.name = name;
 		this.age = age;
 		this.standard = standard;
 		this.address = address;
+		this.book = book;
 	}
 
 	public Integer getsId() {
@@ -86,6 +94,14 @@ public class Student implements Serializable {
 		this.address = address;
 	}
 
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -99,6 +115,8 @@ public class Student implements Serializable {
 		builder.append(standard);
 		builder.append(", address=");
 		builder.append(address);
+		builder.append(", book=");
+		builder.append(book);
 		builder.append("]");
 		return builder.toString();
 	}
