@@ -16,6 +16,10 @@ public class StudentService {
 	@Autowired
 	private StudenRepository studenRepository;
 
+	/**
+	 * @return
+	 * Fetches list of all student exists in student table along with associated entity.
+	 */
 	public Response getAllStudent() {
 		Response response = new Response();
 		List<Student> students = studenRepository.findAll();

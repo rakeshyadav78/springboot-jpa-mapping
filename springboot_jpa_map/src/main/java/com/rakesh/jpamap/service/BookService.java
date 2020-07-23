@@ -18,7 +18,11 @@ public class BookService {
 		return bookRepository.save(book);
 	}
 
+	/**
+	 * Fetches list of all Books from book table aloong with its parent entity.
+	 */
 	public Response getAllBook() {
+
 		Response response = new Response();
 		List<Book> books = bookRepository.getAllBook();
 		response.setBooks(books);
