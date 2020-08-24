@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.rakesh.jpamap</groupId>
 	<artifactId>springboot_jpa_map</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2</version>
 	<name>springboot_jpa_map</name>
 	<description>SPring JPA Mapping</description>
 
@@ -74,10 +74,16 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.9.2</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
-		<finalName>jpamap-angular</finalName>
+		<finalName>jpamap-angular-${version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

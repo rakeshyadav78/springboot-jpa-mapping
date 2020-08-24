@@ -19,14 +19,9 @@ public class EmployeeService {
 	private EmployeeRepository employeeRepository;
 
 	public Employee saveEmp(Employee employee) {
-
 		Employee employee2 = null;
 		try {
-			log.debug("employee " + new ObjectMapper().writeValueAsString(employee));
 			employee2 = employeeRepository.save(employee);
-			log.debug("Return Success");
-			log.debug("employee2 [" + new ObjectMapper().writeValueAsString(employee2) + "]");
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
